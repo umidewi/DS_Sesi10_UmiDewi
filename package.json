@@ -9,8 +9,11 @@
     "dotenv": "^16.4.5"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.js",
-    "generate-allure": "./node_modules/.bin/allure generate allure-results/ --clean",
-    "open-allure": "./node_modules/.bin/allure open"
+    "wdio": "wdio run ./wdio.conf.js --cucumberOpts.tags",
+    "allure-commandline": "^2.27.0",
+    "generate-allure": ".\\node_modules\\.bin\\allure generate allure-results/ --clean",
+    "open-allure": ".\\node_modules\\.bin\\allure open"
   }
 }
+
+

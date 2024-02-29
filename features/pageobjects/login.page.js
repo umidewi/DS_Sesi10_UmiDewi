@@ -6,18 +6,31 @@ class LoginPage extends Page {
     get fieldUsername () { return $('#user-name'); }
     get fieldPassword () { return $('#password'); }
     get buttonLogin () { return $('#login-button'); }
-    rrorLockedOutUser = (dynamicMessage) => $('//h3[text()="${dynamicMessage}"]') 
+    errorLockedOutUser = (dynamicMessage) => $(`//h3[text()="${dynamicMessage}"]`)
+    errorMessages = (message) => $(`//h3[text()="${message}"]`)
 
-    async login (username, password) {
+    async login (username) {
         await this.fieldUsername.waitForDisplayed({ timeout: 2500 });
         await this.fieldUsername.setValue(username);
-        await this.fieldPassword.setValue(password.env.PASSWORD_SAUCEDEMO);
+        await this.fieldPassword.setValue(process.env.PASSWORD_SAUCEDEMO);
         await this.buttonLogin.click();
     }
 
-    async validateLockedOutUserError (message) {
-        await this.errorLockedOutUser(message).waitForDisplayed({ timeout: 2500 });
-        await expect(this.errorLockedOutUser(message)).toBeDisplayed()
+    async login2 (username , password) {
+        await this.fieldUsername.waitForDisplayed({ timeout: 2500 });
+        await this.fieldUsername.setValue(username);
+        await this.fieldPassword.setValue(process.env.USERNAME_INVALID);
+        await this.buttonLogin.click();
+    }
+
+    async validateLockedOutUserError (dynamicMessage) {
+        await this.errorLockedOutUser(dynamicMessage).waitForDisplayed({ timeout: 2500 });
+        await expect(this.errorLockedOutUser(dynamicMessage)).toBeDisplayed()
+    }
+
+    async validateInvalidLogin (message) {
+        await this.errorMessages(message).waitForDisplayed({ timeout: 2500 });
+        await expect(this.errorMessages(message)).toBeDisplayed()
     }
 
     open () {
