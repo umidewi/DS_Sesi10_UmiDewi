@@ -3,18 +3,21 @@ Feature: Swag Labs - Login
   Background: User on the login page
     Given Umi is on the login page
 
-  @positive
+  @positivelogin
   Scenario: As a standard_user, I want to log in successfully
     When Umi login with "standard_user" credential
     Then Umi should see home page
 
-  @negative1
-  Scenario: As a locked_out_user, I should get error message
-    When Umi login with "locked_out_user" credential
-    Then Umi should see error "Epic sadface: Sorry, this user has been locked out."
-
-  @negative2
-  Scenario: As a standart_user, I should get error message
-    When Umi login with "standart_user" credential
-    Then Umi should see error "Epic sadface: Username and password do not match any user in this service"
-
+  @negativelogin
+  Scenario: Login with invalid credential, should get error message
+    When Umi login with <username> and <password>
+    Then Umi should see error <message>
+    
+    Examples:
+    | username        | password        | message                                                                    |
+    | andi            | secret_sauce    | Epic sadface: Username and password do not match any user in this service  |
+    |                 | secret_sauce    | Epic sadface: Username is required                                         |
+    | andi            |                 | Epic sadface: Password is required                                         |
+    | andi            | andi            | Epic sadface: Username and password do not match any user in this service  |
+    | locked_out_user | secret_sauce    | Epic sadface: Sorry, this user has been locked out.                        |
+     

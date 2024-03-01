@@ -19,7 +19,7 @@ class LoginPage extends Page {
     async login2 (username , password) {
         await this.fieldUsername.waitForDisplayed({ timeout: 2500 });
         await this.fieldUsername.setValue(username);
-        await this.fieldPassword.setValue(process.env.USERNAME_INVALID);
+        await this.fieldPassword.setValue(password);
         await this.buttonLogin.click();
     }
 
