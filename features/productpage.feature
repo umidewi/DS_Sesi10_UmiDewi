@@ -1,0 +1,10 @@
+@digital-skola @productpage
+Feature: Swag Labs - Product
+  Background: User on the login page
+  Given Umi is on the login page
+
+@addtocart
+  Scenario: As a standard_user, I want to log in successfully and add to cart
+    When Umi login with "standard_user" credential
+    And Umi click product name
+    Then Umi should see product detail page
