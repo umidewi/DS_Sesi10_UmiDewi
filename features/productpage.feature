@@ -7,4 +7,8 @@ Feature: Swag Labs - Product
   Scenario: As a standard_user, I want to log in successfully and add to cart
     When Umi login with "standard_user" credential
     And Umi click product name
-    Then Umi should see product detail page
+    And Umi click icon cart
+    And Umi click button checkout
+    And Umi fill information
+    And Umi click continue
+    Then Umi should see thank you page

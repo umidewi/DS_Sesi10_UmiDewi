@@ -39,6 +39,29 @@ Then (/^Umi should see product detail page$/, async() => {
     await productdetailpage.validateProductDetailPage()
 })
 
+When (/^Umi click icon cart$/, async() => {
+    await productdetailpage.clickCart()
+})
+
+When (/^Umi click button checkout$/, async() => {
+    await productdetailpage.clickCheckout()
+})
+
+When (/^Umi fill information$/, async() => {
+    await productdetailpage.fillInfo()
+})
+
+When (/^Umi click continue$/, async() => {
+    await productdetailpage.checkoutOverview()
+})
+
+When (/^Umi click finish$/, async() => {
+    
+})
+
+Then (/^Umi should see thank you page$/, async() => {
+     await productdetailpage.thankyouPage()
+})
 
 
 
